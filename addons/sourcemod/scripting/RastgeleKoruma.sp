@@ -33,7 +33,7 @@ public Action CMD_RastgeleKoruma(int client, int args)
 		CS_SwitchTeam(SecilenKoruma, CS_TEAM_CT);
 		PrintToChatAll(" \x04[SM] \x06Rastgele koruma olarak \x10 %N \x06seçildi", SecilenKoruma);
 		
-		ShowOverlay(SecilenKoruma, "Darfk/rsk/korumaoldun", 1.0);
+		ShowOverlay(SecilenKoruma, "Darfk/rsk/korumaoldun", 2.3);
 	}
 	else {
 		PrintToChat(client, " \x04[SM] \x06Bu komutu sadece \x0BKomutçu \x06kullanabilir.");
