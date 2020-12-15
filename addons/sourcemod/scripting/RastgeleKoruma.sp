@@ -8,7 +8,7 @@ public Plugin myinfo = {
 	name			= "Rastgele bir Koruma seçer.",
 	author			= "Darfk",
 	description		= "Komutçu kişi !rastgelekoruma yazarak Mahkum takımından rastgele bir oyuncuyu CT Takımına atar.",
-	version			= "1.00",
+	version			= "1.20",
 	url				= "https://github.com/Darfk-S/Jailbreak-RastgeleKoruma"
 };
 
@@ -20,8 +20,20 @@ public void OnPluginStart()
 
 public void OnMapStart()
 {
+	char map[32];
+	GetCurrentMap(map, sizeof(map));
+	if (strncmp(map, "jb_", 3, false) != 0 && strncmp(map, "jail_", 5, false) != 0 && strncmp(map, "ba_jail", 3, false) != 0)
+	{
+		SetFailState("[RSK] Rastgele Koruma plugini sadece Jailbreak modunda çalışır.");
+		AddFileToDownloadsTable("materials/Darfk/rsk/korumaoldun.vmt");
+		AddFileToDownloadsTable("materials/Darfk/rsk/korumaoldun.vtf");
+		AddFileToDownloadsTable("sound/Darfk/rsk/koruma.mp3");
+		PrecacheSound("Darfk/rsk/koruma.mp3");
+	}
 	AddFileToDownloadsTable("materials/Darfk/rsk/korumaoldun.vmt");
 	AddFileToDownloadsTable("materials/Darfk/rsk/korumaoldun.vtf");
+	AddFileToDownloadsTable("sound/Darfk/rsk/koruma.mp3");
+	PrecacheSound("Darfk/rsk/koruma.mp3");
 }
 
 public Action CMD_RastgeleKoruma(int client, int args)
@@ -34,6 +46,7 @@ public Action CMD_RastgeleKoruma(int client, int args)
 		PrintToChatAll(" \x04[SM] \x06Rastgele koruma olarak \x10 %N \x06seçildi", SecilenKoruma);
 		
 		ShowOverlay(SecilenKoruma, "Darfk/rsk/korumaoldun", 2.3);
+		EmitSoundToClient(SecilenKoruma, "Darfk/rsk/koruma.mp3");
 	}
 	else {
 		PrintToChat(client, " \x04[SM] \x06Bu komutu sadece \x0BKomutçu \x06kullanabilir.");
